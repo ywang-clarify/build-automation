@@ -63,7 +63,7 @@ async function autoMergePullRequests() {
             console.log(`    #${p.number} - Merging pull request with "${pull.rebaseable ? 'rebase' : 'merge'}".`);
             const mergeResult = _.get(await axios.put(`https://api.github.com/repos/${p.head.repo.full_name}/pulls/${p.number}/merge`,
                 {
-                    merge_method: pull.rebaseable ? 'rebase' : 'merge',
+                    merge_method: pull.rebaseable ? 'rebase' : 'squash',
                     sha: p.head.sha,
                     commit_title: `Merge pull request #${p.number} from ${p.head.repo.name}/${p.head.ref}`
                 },
